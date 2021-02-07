@@ -1,0 +1,3 @@
+FLASK_ENV=development
+FLASK_APP=main
+BOOT_SERVE_LOCAR=True

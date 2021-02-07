@@ -1,0 +1,21 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.douban.com/simple"
+verify_ssl = true
+
+[dev-packages]
+watchdog = "*"
+
+[packages]
+flask = "*"
+flask-sqlalchemy = "*"
+python-dotenv = "*"
+pymysql = "*"
+bootstrap-flask = "*"
+flask-wtf = "*"
+flask-login = "*"
+email-validator = "*"
+cryptography = "*"
+
+[requires]
+python_version = "3.7"
