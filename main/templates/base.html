@@ -1,0 +1,56 @@
+{% from 'bootstrap/nav.html' import render_nav_item %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}">
+    {{ bs.load_css() }}
+</head>
+<body>
+    <img src="{{ url_for("static",filename="title.png") }}" width="400" height="60" alt="智障度检测机">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4 navbar-fixed-top">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                {{ render_nav_item('index', '主页', use_li=True) }}
+                {{ render_nav_item('message', '信息', use_li=True) }}
+                {{ render_nav_item('userindex', '用户主页', use_li=True) }}
+                {{ render_nav_item('about', '关于', use_li=True) }}
+            </ul>
+        </div>
+    </nav>
+    
+    <main class="container">
+     {% for message in get_flashed_messages(with_categories=True) %}
+        <div class="alert alert-{{ message[0] }}" role="alert">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ message[1] }}
+        </div>
+    {% endfor %}
+    {% block content %}{% endblock %}
+    </main>
+
+    <footer class="text-center">
+        {% block footer %}
+            <small> 
+            &copy; 2018 <a href="#" title="刘家朋编写">刘家朋</a>
+            </small>
+            <small>
+            {% if current_user.is_authenticated %}
+                <a href="{{ url_for('logout', next=request.full_path) }}">登出</a>
+            {% else %}
+                <a href="{{ url_for('login', next=request.full_path) }}">登入</a>
+            {% endif %}
+            </small>
+        {% endblock %}
+    </footer>
+
+    {{ bs.load_js() }}
+    {% block js_css %}{% endblock %}
+</body>
+</html>

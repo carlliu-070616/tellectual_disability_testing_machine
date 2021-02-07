@@ -1,0 +1,10 @@
+@charset "utf-8";
+div[class~="message"] {
+	border-style: solid;
+	border-color: #bbbbaa #111111 #ee3e80 #0088dd;}
+span[class~="title"] {
+	color:#3F0}
+span[class~="body"] {
+	color:#F00}
+
+

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% from 'bootstrap/form.html' import render_form %}
+{% from 'bootstrap/pagination.html' import render_pagination %}
+
+{% block title %}信息{% endblock %}
+
+{% block content %}
+   {{ render_form(form) }}
+   <hr />
+   {% include '_messages.html' %}
+   {% if messages %}
+      {{ render_pagination(pagination) }}
+   {% else %}
+      还没有信息呢，快发一个吧
+   {% endif %}
+{% endblock %}
+{% block js_css %}
+   <link href="{{ url_for('static', filename='css/messages.css') }}" rel="stylesheet">
+{% endblock %}

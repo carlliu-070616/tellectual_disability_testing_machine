@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}主页{% endblock %}
+
+{% block content %}
+
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<p class="text-center">
+				<strong>点击下方按钮测一测你的智障度吧！</strong>
+  			</p> 
+            <p align="center" class="text-warning lead" id="ss">
+				 你的智障度
+			</p>
+            <button type="button" class="btn btn-primary btn-block btn-lg" id="zzd">测试</button>
+		</div>
+	</div>
+</div>
+<div class="d">
+</div>
+
+{% endblock %}
+
+{% block js_css %}
+<script type="text/javascript">
+var zzd_url = "{{ url_for("zzd") }}";
+</script>
+<link href="{{ url_for('static', filename='css/toast.style.min.css') }}" rel="stylesheet">
+<script type="text/javascript" src="{{ url_for('static', filename='js/toast.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
+{% endblock %}

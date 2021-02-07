@@ -1,0 +1,11 @@
+import os
+
+
+from main import app
+
+
+SECRET_KEY = os.getenv("SECRET_KEY")
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL")
+BOOTSTRAP_SERVE_LOCAL = True
+MESSAGE_PER_PAGE = 20
