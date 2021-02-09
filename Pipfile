@@ -16,6 +16,7 @@ flask-wtf = "*"
 flask-login = "*"
 email-validator = "*"
 cryptography = "*"
+flask-admin = "*"
 
 [requires]
 python_version = "3.7"

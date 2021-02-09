@@ -1,16 +1,35 @@
 from flask import flash,render_template, redirect, url_for, request,jsonify
 from flask_login import current_user,login_required,login_user, logout_user
+from flask_admin import BaseView,expose
+from flask_admin.contrib.sqla import ModelView
 import random
 
 
-from main import app,db,bs,redirect_back
+from main import app,db,bs,redirect_back,admin
 from main.forms import LoginForm,RegisterForm,MessageForm
 from main.models import User,Message
 
 
+class MyView(BaseView):
+    @expose('/')
+    def index(self):
+       return self.render('admin.html')
+
+
+class MyModelView(ModelView):
+    def is_accessible(self):
+       if current_user.is_authenticated:
+          return current_user.is_admin
+       else:
+          return current_user.is_authenticated
+
+    def inaccessible_callback(self, name, **kwargs):
+       return redirect(url_for('login', next=request.url))
+
+
 @app.route("/index")
 def index():
-   return render_template('index.html',bs=bs) 
+   return render_template('admin.html',bs=bs) 
    
 
 @app.route("/message", methods=['GET', 'POST'])
@@ -35,12 +54,13 @@ def message():
 @app.route("/userindex")
 @login_required
 def userindex():
-   pass
+   messages = current_user.messages
+   return render_template('user_index.html',bs=bs,messages=messages,user=current_user)
    
    
 @app.route("/about")
 def about():
-   pass
+   return render_template('about.html',bs=bs,user=current_user)
    
    
 @app.route("/zzd", methods=['GET', 'POST'])
@@ -108,5 +128,6 @@ def register():
    return render_template('register.html', form=form,bs=bs)
    
    
-
-   
+admin.add_view(MyModelView(User, db.session))
+admin.add_view(MyModelView(Message, db.session))
+admin.add_view(MyView(name=u'提示'))

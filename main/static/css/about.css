@@ -1,0 +1,10 @@
+@charset "utf-8";
+/* CSS Document */
+p[class~="about"] {
+	color: #93F;
+	font-size: 18px;}
+strong[class~="zzd"] {
+	color: #C00;}
+p[class~="user_index"] {
+	color: #F00;
+	font-size: 18px;}

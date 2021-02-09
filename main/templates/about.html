@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}关于{% endblock %}
+
+{% block content %}
+   {% if user.is_authenticated %}
+      <p class='about'>
+      你好，<strong>{{ user.name }}</strong>！<br>
+      本网站采用最新星座测运技术，测出您的智障度为：<br>
+      <strong class='zzd'>{{ user.Intellectual_disability }}</strong><br>
+      不服气？那就快去<a href="{{ url_for('index') }}">主页</a>测试吧!
+      </p> <hr />
+      <h5>
+      本网站由刘家朋制作，源码托管于<a href="https://github.com/carlliu-070616/tellectual_disability_testing_machine">GitHub</a>
+      </h5>
+   {% else %}
+      <div class='shake-little'>没登录还想看啥？快去<a href="{{ url_for('login') }}">登录</a>！</div>
+   {% endif %}
+{% endblock %}
+{% block js_css %}
+   <link href="{{ url_for('static', filename='css/about.css') }}" rel="stylesheet">
+   <link href="{{ url_for('static', filename='css/hake.css') }}" rel="stylesheet">
+{% endblock %}

@@ -1,8 +1,10 @@
+from functools import wraps
 from urllib.parse import urlparse, urljoin
-from flask import Flask, request, redirect
+from flask import Flask, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_bootstrap import Bootstrap
+from flask_admin import Admin
 import pymysql
 
 
@@ -15,6 +17,7 @@ app.jinja_env.lstrip_blocks = True
 db = SQLAlchemy(app)
 pymysql.install_as_MySQLdb()
 bs = Bootstrap(app)
+admin = Admin(app,name=u'后台管理系统')
 login = LoginManager(app)
 login.login_view = "login"
 login.login_message = u"请先登录！"

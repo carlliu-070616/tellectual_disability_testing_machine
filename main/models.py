@@ -11,6 +11,7 @@ class User(db.Model,UserMixin):
     Intellectual_disability = db.Column(db.Integer,default=100)
     email = db.Column(db.String(254), unique=True, index=True)
     name = db.Column(db.String(30))
+    is_admin = db.Column(db.Boolean, default=False)
     messages = db.relationship("Message",back_populates="user")
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)

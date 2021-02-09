@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}用户主页-{{ user.username }}{% endblock %}
+
+{% block content %}
+   <h1>这里是{{ user.name }}的私人空间</h1>
+   <hr>
+   <p class="user_index">
+      {{ user.name }}的用户名：{{ user.username }}<br>
+      {{ user.name }}的邮箱：{{ user.email }}<br>
+      {{ user.name }}的智障度：<strong class="zzd">{{ user.Intellectual_disability }}</strong><br>
+   {{ user.name }}的消息：</p><hr>
+   {% if messages %}
+      {% include '_messages.html' %}
+   {% else %}
+      还没有消息呢，<a href='{{ url_for('message') }}'>快去发一封吧</a>
+   {% endif %}
+{% endblock %}
+{% block js_css %}
+   <link href="{{ url_for('static', filename='css/about.css') }}" rel="stylesheet">
+   <link href="{{ url_for('static', filename='css/messages.css') }}" rel="stylesheet">
+{% endblock %}
