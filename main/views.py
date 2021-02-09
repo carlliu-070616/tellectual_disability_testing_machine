@@ -29,7 +29,7 @@ class MyModelView(ModelView):
 
 @app.route("/index")
 def index():
-   return render_template('admin.html',bs=bs) 
+   return render_template('index.html',bs=bs) 
    
 
 @app.route("/message", methods=['GET', 'POST'])
