@@ -19,6 +19,10 @@ class User(db.Model,UserMixin):
 
     def validate_password(self, password):
         return check_password_hash(self.password_hash, password)
+		
+
+    def __repr__(self):
+        return '<User %r>' % self.username
 	
 	
 class Message(db.Model):
@@ -28,3 +32,5 @@ class Message(db.Model):
     timestamp = db.Column(db.DateTime,default=datetime.utcnow,index=True)
     user_id = db.Column(db.Integer,db.ForeignKey("user.id"))
     user = db.relationship("User",back_populates="messages")
+    def __repr__(self):
+        return '<Message %r>' % self.title
