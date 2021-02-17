@@ -6,6 +6,7 @@ from flask_login import LoginManager
 from flask_bootstrap import Bootstrap
 from flask_admin import Admin
 import pymysql
+from flask_migrate import Migrate
 
 
 app = Flask("main")
@@ -16,6 +17,7 @@ app.jinja_env.lstrip_blocks = True
 
 db = SQLAlchemy(app)
 pymysql.install_as_MySQLdb()
+midrate = Migrate(app,db)
 bs = Bootstrap(app)
 admin = Admin(app,name=u'后台管理系统')
 login = LoginManager(app)
