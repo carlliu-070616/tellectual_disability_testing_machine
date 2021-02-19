@@ -1,4 +1,3 @@
-from functools import wraps
 from urllib.parse import urlparse, urljoin
 from flask import Flask, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
@@ -17,7 +16,7 @@ app.jinja_env.lstrip_blocks = True
 
 db = SQLAlchemy(app)
 pymysql.install_as_MySQLdb()
-midrate = Migrate(app,db)
+migrate = Migrate(app,db)
 bs = Bootstrap(app)
 admin = Admin(app,name=u'后台管理系统')
 login = LoginManager(app)
